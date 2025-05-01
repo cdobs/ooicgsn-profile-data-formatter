@@ -23,7 +23,7 @@ class remus600Processor( auvProcessor ) :
 
         # constants (move to config?)
         self.MIN_PROFILE_DEPTH_METERS = 10
-        self.MIN_PROFILE_TIME_SECONDS = 120
+        self.MIN_PROFILE_TIME_SECONDS = 60
         self.MAX_TIME_GAP_SECONDS = 30
         self.SMOOTHING_WINDOW_SIZE = 150
 
@@ -457,4 +457,3 @@ class remus600Processor( auvProcessor ) :
         midpointLon = longitudes[ timeIndex ]
 
         return midpointTime, midpointLat, midpointLon
-
