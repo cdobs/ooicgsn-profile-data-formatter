@@ -6,6 +6,7 @@ into NetCDF files for import into GliderDac repository
 
 history:
 09/21/2021 ppw created
+01/16/2026 cdobs - adds cdom correction factor
 """
 from MobilePlatform.AuvPlatform.auvPlatform import auvPlatform
 from FileReader.jsonCfgReader import jsonCfgReader
@@ -619,7 +620,9 @@ class remus600Platform( auvPlatform ) :
             corrCDOM = self.dataProcessor.processCDOMData(
                 instrData[ sensorDef['attrs']['subset_field'] ],
                 sensorDef['attrs']['calibration_dark_offset'],
-                sensorDef['attrs']['calibration_scale_factor'] )
+                sensorDef['attrs']['calibration_scale_factor'],
+                sensorDef['attrs'].get('correction_scale_factor', 1.0))
+
             dataTimesMs = data.timesInMillisecs( instrData.get('timestamp'),
                                                  instrData.get('missionTime') )
             calculatedVars[ 'cdom' ] = { 'values': corrCDOM, 'times': dataTimesMs }

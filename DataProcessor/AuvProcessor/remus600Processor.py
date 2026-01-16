@@ -5,6 +5,7 @@ description:
 
 history:
 09/21/2021 ppw created
+01/16/2026 cdobs - adds cdom correction factor
 """
 import logging
 import numpy as np
@@ -337,16 +338,17 @@ class remus600Processor( auvProcessor ) :
 
         return calculatedPar
 
-    def processCDOMData(self, sensorCounts, calibratedDarkOffset, calibratedScaleFactor):
+    def processCDOMData(self, sensorCounts, calibratedDarkOffset, calibratedScaleFactor, correctionScaleFactor=1.0):
         """
         CDOM data needs calculation from counts using calibration constants
         :param sensorCounts: output by FLBBCD
         :param calibratedDarkOffset - in sensor_defs.json from calibration certificate
         :param calibratedScaleFactor - in sensor_defs.json from calibration certificate
+        :param correctionScaleFactor - optional, in sensor_defs.json cdom correction scale factor
         :return: correctedCDOM
         """
 
-        correctedCDOM = (sensorCounts - calibratedDarkOffset) * calibratedScaleFactor
+        correctedCDOM = (sensorCounts - calibratedDarkOffset) * calibratedScaleFactor * correctionScaleFactor
 
         return correctedCDOM
 

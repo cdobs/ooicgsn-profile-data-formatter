@@ -1,6 +1,7 @@
 # README #
 
 New notes:
+01/16/2026 - Added an option to adjust CDOM values affected by a vendor-identified issue that caused bias due to improperly prepared calibration standards. The issue is described in further detail at https://oceanobservatories.org/2024/12/sbs-issues-notice-for-certain-cdom-fluorometers/. To adjust CDOM values, update the correction_scale_factor value in the flort_cdom section of sensor_defs.cfg file. The default is 1.0.  
 
 09/25/2023 - Several early AUV deployments use the old Seabird CTD only. No Neil Brown CTD was installed. For those deployments, the subset_message_id field for the CTD instrument in the instruments.cfg file must be changed from 1107 to 1181. Additionally, in the sensor_defs.cfg file, the observation_type for the pressure sensor def must be changed from "measured" to "calculated", as this CTD's message data does not contain a pressure column.
 
